@@ -1,3 +1,8 @@
+""" Project 1: Optimization of a Function with Derivatives
+This script demonstrates the optimization of a function using The Steepest Descent and Gradient Descent methods.
+
+It includes plotting the function's surface and contour, optimizing the function, and visualizing the convergence trajectory.
+"""
 import numpy as np
 import sympy as sp
 from numpy import e
@@ -6,49 +11,48 @@ from models.FunctionWithDerivatives import FunctionWithDerivatives
 from optimizers.GradientDescent import GradientDescent
 from optimizers.SteepestDescent import SteepestDescent
 
-
 if __name__ == "__main__":
     # Initial Guess
     x_0 = np.array([0.3, 1.2])
 
     # Define the function using sympy
     x, y = sp.symbols('x y')
-    func_expr = x * y * e ** (-x**2 - y**2)
+    func_expr = x * y * e ** (-x ** 2 - y ** 2)
     func = FunctionWithDerivatives((x, y), func_expr)
 
     # a. Plot the function at the initial guess
-    # func.plot_3d_surface(
-    #     x_range=(-1, 1),
-    #     y_range=(-1, 1),
-    #     resolution=200,
-    #     initial_point=x_0,
-    #     show_gradient=False
-    # )
-    # func.plot_contour(
-    #     x_range=(-1, 1),
-    #     y_range=(-2, 2),
-    #     resolution=200,
-    #     levels=50,
-    #     initial_point=x_0,
-    #     show_gradient=False
-    # )
+    func.plot_3d_surface(
+        x_range=(-1, 1),
+        y_range=(-1, 1),
+        resolution=200,
+        initial_point=x_0,
+        show_gradient=False
+    )
+    func.plot_contour(
+        x_range=(-1, 1),
+        y_range=(-2, 2),
+        resolution=200,
+        levels=50,
+        initial_point=x_0,
+        show_gradient=False
+    )
 
     # b. Plot the function at the initial guess with gradient
-    # func.plot_3d_surface(
-    #     x_range=(-2, 2),
-    #     y_range=(-1, 1),
-    #     resolution=200,
-    #     initial_point=x_0,
-    #     show_gradient=True
-    # )
-    # func.plot_contour(
-    #     x_range=(-1, 1),
-    #     y_range=(-2, 2),
-    #     resolution=200,
-    #     levels=50,
-    #     initial_point=x_0,
-    #     show_gradient=True
-    # )
+    func.plot_3d_surface(
+        x_range=(-2, 2),
+        y_range=(-1, 1),
+        resolution=200,
+        initial_point=x_0,
+        show_gradient=True
+    )
+    func.plot_contour(
+        x_range=(-1, 1),
+        y_range=(-2, 2),
+        resolution=200,
+        levels=50,
+        initial_point=x_0,
+        show_gradient=True
+    )
 
     # c. Optimize values
     # Control variables
@@ -77,37 +81,37 @@ if __name__ == "__main__":
 
     # d. Plot function with the min point found
     # The Steepest Descent
-    # func.plot_3d_surface(
-    #     x_range=(-1, 0),
-    #     y_range=(-0, 1),
-    #     resolution=200,
-    #     initial_point=steepest_descent_result.x,
-    #     show_gradient=False
-    # )
-    # func.plot_contour(
-    #     x_range=(-1, 1),
-    #     y_range=(-2, 2),
-    #     resolution=200,
-    #     levels=50,
-    #     initial_point=steepest_descent_result.x,
-    #     show_gradient=True
-    # )
+    func.plot_3d_surface(
+        x_range=(-1, 0),
+        y_range=(0, 1),
+        resolution=200,
+        initial_point=steepest_descent_result.x,
+        show_gradient=False
+    )
+    func.plot_contour(
+        x_range=(-1, 1),
+        y_range=(-2, 2),
+        resolution=200,
+        levels=50,
+        initial_point=steepest_descent_result.x,
+        show_gradient=True
+    )
     # Gradient Descent
-    # func.plot_3d_surface(
-    #     x_range=(-1, 0),
-    #     y_range=(-0, 1),
-    #     resolution=200,
-    #     initial_point=gradient_descent_result.x,
-    #     show_gradient=False
-    # )
-    # func.plot_contour(
-    #     x_range=(-1, 1),
-    #     y_range=(-2, 2),
-    #     resolution=200,
-    #     levels=50,
-    #     initial_point=gradient_descent_result.x,
-    #     show_gradient=True
-    # )
+    func.plot_3d_surface(
+        x_range=(-1, 0),
+        y_range=(0, 1),
+        resolution=200,
+        initial_point=gradient_descent_result.x,
+        show_gradient=False
+    )
+    func.plot_contour(
+        x_range=(-1, 1),
+        y_range=(-2, 2),
+        resolution=200,
+        levels=50,
+        initial_point=gradient_descent_result.x,
+        show_gradient=True
+    )
 
     # e. Plot convergence trajectory
     # The Steepest Descent

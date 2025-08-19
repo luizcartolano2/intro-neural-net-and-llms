@@ -16,7 +16,7 @@ class SteepestDescent(OptimizerBase):
         start_time = time.time()
 
         for i in range(self.max_iters):
-            self.log(f'Iteracao {i}')
+            self.log(f'Iteration {i}')
 
             # Evaluate the function and the gradient at the current point
             func_value = self.function.evaluate_function_at(x)

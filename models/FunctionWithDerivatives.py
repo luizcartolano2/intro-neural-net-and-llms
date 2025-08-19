@@ -117,7 +117,7 @@ class FunctionWithDerivatives:
         if initial_point is not None:
             x_0, y_0 = initial_point
             z_0 = self.evaluate_function_at([x_0, y_0])
-            ax.scatter(x_0, y_0, z_0, color='red', s=resolution, label='Initial Point')
+            ax.scatter(x_0, y_0, z_0, color='red', s=50, label='Initial Point')
 
             if show_gradient:
                 grad = self.evaluate_gradient_at([x_0, y_0])
