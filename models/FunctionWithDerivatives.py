@@ -87,14 +87,20 @@ class FunctionWithDerivatives:
 
         return hessian_values
 
-    def plot_3d_surface(self, x_range: tuple = (-2, 2), y_range: tuple = (-2, 2), resolution: int = 100) -> None:
+    def plot_3d_surface(self, x_range: tuple = (-2, 2), y_range: tuple = (-2, 2), resolution: int = 100,
+                        initial_point: np.ndarray = None, show_gradient: bool = False) -> None:
         """
         Plot the 3D surface of the function over a specified range.
 
         :param x_range: Tuple specifying the range for the x-axis (e.g., (-2, 2))
         :param y_range: Tuple specifying the range for the y-axis (e.g., (-2, 2))
         :param resolution: Number of points for meshgrid (e.g., 100)
+        :param initial_point: Optional initial point to highlight on the surface
+        :param show_gradient: If True, shows the gradient at the initial point
         """
+        if show_gradient:
+            assert initial_point is not None, "Initial point must be provided to show gradient."
+
         x_vals = np.linspace(*x_range, resolution)
         y_vals = np.linspace(*y_range, resolution)
         x_rows, y_rows = np.meshgrid(x_vals, y_vals)
@@ -107,14 +113,25 @@ class FunctionWithDerivatives:
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.plot_surface(x_rows, y_rows, z_row, cmap='viridis', edgecolor='none')
-        ax.set_xlabel('x1')
-        ax.set_ylabel('x2')
-        ax.set_zlabel('f(x1, x2)')
+
+        if initial_point is not None:
+            x_0, y_0 = initial_point
+            z_0 = self.evaluate_function_at([x_0, y_0])
+            ax.scatter(x_0, y_0, z_0, color='red', s=resolution, label='Initial Point')
+
+            if show_gradient:
+                grad = self.evaluate_gradient_at([x_0, y_0])
+                ax.quiver(x_0, y_0, z_0, -grad[0], -grad[1], 0, length=0.5, color='blue', normalize=True,
+                          label='Gradient')
+
+        ax.set_xlabel('x')
+        ax.set_ylabel('y')
+        ax.set_zlabel('f(x, y)')
         ax.set_title('3D Surface Plot')
         plt.show()
 
     def plot_contour(self, x_range: tuple = (-2, 2), y_range: tuple = (-2, 2), resolution: int = 100,
-                     levels: int = 50) -> None:
+                     levels: int = 50, initial_point: np.ndarray = None, show_gradient: bool = False) -> None:
         """
         Plot the contour of the function over a specified range.
 
@@ -122,7 +139,12 @@ class FunctionWithDerivatives:
         :param y_range: Tuple specifying the range for the y-axis (e.g., (-2, 2))
         :param resolution: Number of points for meshgrid (e.g., 100)
         :param levels: Number of contour levels
+        :param initial_point: Optional initial point to highlight on the surface
+        :param show_gradient: If True, shows the gradient at the initial point
         """
+        if show_gradient:
+            assert initial_point is not None, "Initial point must be provided to show gradient."
+
         x_vals = np.linspace(*x_range, resolution)
         y_vals = np.linspace(*y_range, resolution)
         x_rows, y_rows = np.meshgrid(x_vals, y_vals)
@@ -134,7 +156,18 @@ class FunctionWithDerivatives:
         # Create the contour plot
         plt.contour(x_rows, y_rows, z_rows, levels=levels, cmap='viridis')
         plt.colorbar()
-        plt.xlabel('x1')
-        plt.ylabel('x2')
+        plt.xlabel('x')
+        plt.ylabel('y')
         plt.title('Contour Plot')
+
+        if initial_point is not None:
+            x_0, y_0 = initial_point
+            plt.scatter(x_0, y_0, color='red', s=100, label='Initial Point')
+
+            if show_gradient:
+                grad = self.evaluate_gradient_at([x_0, y_0])
+                plt.quiver(x_0, y_0, -grad[0], -grad[1],
+                           angles='xy', scale_units='xy', scale=1,
+                           color='blue', label='Gradient')
+
         plt.show()

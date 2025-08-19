@@ -3,6 +3,7 @@
 
 # PyCharm/IDEA project files
 .idea/
+results/
 
 # Python gitignore
 # Byte-compiled / optimized / DLL files
