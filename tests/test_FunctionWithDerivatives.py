@@ -1,7 +1,7 @@
 import unittest
 import sympy as sp
 import numpy as np
-from models.FunctionWithDerivatives import FunctionWithDerivatives
+from models.function_with_derivatives import FunctionWithDerivatives
 
 
 class TestFunctionWithDerivatives(unittest.TestCase):
