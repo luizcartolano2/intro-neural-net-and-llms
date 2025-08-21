@@ -59,7 +59,7 @@ class PerceptronRule:
                 self.__log(f"\t[Sample {iter_j + 1}] Input: {input_i}, Expected: {output_i}")
 
                 predict_y = np.dot(input_i, weights)
-                self.__log(f"\t\tNet input (v): {predict_y:.4f} = {input_i} · {weights}")
+                self.__log(f"\t\tNet input (v): {predict_y:.4f} = {input_i} * {weights}")
 
                 f_net_y = y_func(predict_y)
                 self.__log(f"\t\tActivation f(v): {f_net_y:.4f}")
