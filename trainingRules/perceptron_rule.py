@@ -49,7 +49,7 @@ class PerceptronRule:
         has_weight_updated = True
         start_time = time.time()
 
-        while iter_i <= self.max_iters and has_weight_updated:
+        while iter_i < self.max_iters and has_weight_updated:
             self.__log("=" * 90)
             self.__log(f"Iteration {iter_i + 1}")
             self.__log("=" * 90)
