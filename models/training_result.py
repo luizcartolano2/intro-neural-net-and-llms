@@ -6,7 +6,7 @@ import numpy as np
 @dataclass
 class TrainingResult:
     """
-    A named tuple to store the result of a training process.
+    A dataclass to store the result of a training process.
     Attributes:
         weights (np.ndarray): The optimized weights of the model after training.
         epochs (int): The number of epochs the model was trained for.
