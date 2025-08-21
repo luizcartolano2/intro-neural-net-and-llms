@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 import numpy as np
 import matplotlib.pyplot as plt
 
-from models.FunctionWithDerivatives import FunctionWithDerivatives
-from models.OptimizationResult import OptimizationResult
+from models.function_with_derivatives import FunctionWithDerivatives
+from models.optimization_result import OptimizationResult
 
 
 class OptimizerBase(ABC):

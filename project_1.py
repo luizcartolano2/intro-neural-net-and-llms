@@ -7,9 +7,9 @@ import numpy as np
 import sympy as sp
 from numpy import e
 
-from models.FunctionWithDerivatives import FunctionWithDerivatives
-from optimizers.GradientDescent import GradientDescent
-from optimizers.SteepestDescent import SteepestDescent
+from models.function_with_derivatives import FunctionWithDerivatives
+from optimizers.gradient_descent import GradientDescent
+from optimizers.steepest_descent import SteepestDescent
 
 if __name__ == "__main__":
     # Initial Guess
